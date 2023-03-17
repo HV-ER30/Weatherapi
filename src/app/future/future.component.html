@@ -1,0 +1,33 @@
+<div class="primary" *ngIf="primaryDisplay">
+    <h3>Future Forecast</h3>
+    <br>
+    <ul *ngFor="let forecast of weatherData; let i= index">
+        <li class="main" (click)="toggle()">
+            {{ forecast.dt_txt | date:'EEE, MMM dd'}}
+            <img  src ="assets/images/{{ forecast.weather[0].icon }}.png" alt="icon" class="icon">
+            <span>
+                {{ forecast.main.temp_min | number:'1.0-0'}} °F /
+                {{ forecast.main.temp_max | number:'1.0-0'}} °F
+            </span>
+            <span>{{ forecast.weather[0].main}}</span>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="secondaryDisplay">
+    <h3> 5-Day Forecast:</h3>
+    <ul class="sub">
+        <li *ngFor="let forecast of weatherData; let i = index">
+          <span (click)="showDetails(weatherData[i])">{{ forecast.dt_txt | date:'EEE'}}</span>  
+        </li>
+        <i class="fa fa-caret-up" aria-hidden="true" (click)="toggle()"></i>
+    </ul>
+    <div *ngIf="forecastDetails">
+        <br>
+        <h1 class="sub">
+            Humidity : {{forecastDetails.main.humidity}} %
+        </h1>
+        <h3>{{ forecastDetails.main.temp | number:'1.0-0'}} °F</h3>
+    </div>
+</div>
