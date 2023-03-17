@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   eyeIcon: string="fa-eye-slash";
   public loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -38,12 +39,12 @@ export class LoginComponent {
           return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
         });
         if(user){
-          alert("Login Success");
+          this.toast.success({detail:"SUCCESS", summary:"Login successful!!!", duration: 5000})
           this.loginForm.reset();
           this.router.navigate(['dashboard'])
         } else {
           this.validateAllFormFields(this.loginForm);
-          alert("Your Form is invalid")
+          this.toast.error({detail:"ERROR", summary:"Something went wrong!!!", duration: 5000})
         }
       })
       ,error:(err=>{

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TodayComponent } from './today/today.component';
 import { FutureComponent } from './future/future.component';
+import { NgToastModule } from 'ng-angular-popup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { FutureComponent } from './future/future.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
