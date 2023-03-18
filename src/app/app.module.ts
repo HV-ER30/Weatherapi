@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TodayComponent } from './today/today.component';
 import { FutureComponent } from './future/future.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { NgToastModule } from 'ng-angular-popup';
     SignupComponent,
     DashboardComponent,
     TodayComponent,
-    FutureComponent
+    FutureComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
